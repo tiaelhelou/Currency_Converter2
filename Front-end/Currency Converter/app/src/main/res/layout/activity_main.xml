@@ -26,6 +26,7 @@
         android:text="Calculator"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="@color/black"
+        app:cornerRadius="20.37dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.409"
