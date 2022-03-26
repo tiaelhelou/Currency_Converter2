@@ -50,7 +50,6 @@
         android:shadowDy="15"
         android:shadowRadius="10"
         android:text="Currency Converter"
-        android:textAllCaps="false"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="34sp"
         android:textStyle="bold|italic"
@@ -78,6 +77,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.345" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="186dp"
+        android:layout_height="70dp"
+        android:backgroundTint="@color/white"
+        android:text="Convert To LBP"
+        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="#C9000000"
+        android:textStyle="bold|italic"
+        app:cornerRadius="18.34dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.109"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.543" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
