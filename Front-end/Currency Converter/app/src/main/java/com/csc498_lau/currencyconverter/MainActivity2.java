@@ -21,4 +21,6 @@ public class MainActivity2 extends AppCompatActivity {
         Intent obj = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(obj);
     }
+
+
 }
