@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +16,9 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
+
+    TextView text1;
+    TextView text2;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
@@ -54,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
                 JSONObject json = new JSONObject(s);
                 String buy = json.getString("buy_rate");
                 String sell = json.getString("sell_rate");
-                Log.i("buy_rate", buy);
-                Log.i("sell_rate", sell);
+                text1.setText("Buy 1 USD at " + buy + " LBP");
+                text2.setText("Sell 1 USD at " + sell + " LBP");
 
             }catch(Exception e){
                 e.printStackTrace();
@@ -68,6 +70,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        text1 = (TextView) findViewById(R.id.textView);
+        text2 = (TextView) findViewById(R.id.textView3);
 
         getSupportActionBar().hide();
         String url = "http://192.168.1.7/Currency_Converter/get_updated_rate.php";
