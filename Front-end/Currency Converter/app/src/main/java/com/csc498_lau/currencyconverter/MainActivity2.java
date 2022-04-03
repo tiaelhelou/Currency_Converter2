@@ -96,5 +96,8 @@ public class MainActivity2 extends AppCompatActivity {
         task.execute(usd, lbp);
     }
 
-  
+    public void reset (View view){
+        amount_to_convert.setText("The amount LBP or USD");
+        amount.setText("");
+    }
 }
