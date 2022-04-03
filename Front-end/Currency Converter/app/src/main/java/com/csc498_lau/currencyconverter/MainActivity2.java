@@ -72,4 +72,10 @@ public class MainActivity2 extends AppCompatActivity {
         startActivity(obj);
     }
 
+    public void fadeAmountToConvert(View view) {
+        if(amount_to_convert.getText().toString().equals("The amount LBP or USD")){
+            amount_to_convert.setText("");
+        }
+    }
+    
 }
