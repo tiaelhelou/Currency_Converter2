@@ -184,7 +184,7 @@ public class MainActivity2 extends AppCompatActivity {
         task1.execute(url);
     }
 
-    // Resetting the page to be as first opened 
+    // Resetting the page to be as first opened
     public void reset (View view){
 
         amount_to_convert.setText("The amount LBP or USD");
