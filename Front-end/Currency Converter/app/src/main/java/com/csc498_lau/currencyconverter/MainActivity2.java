@@ -30,6 +30,8 @@ public class MainActivity2 extends AppCompatActivity {
 
         protected String doInBackground(String... arg0) {
 
+            // Establishing a connection with back-end through the url
+            // Posting strings usd and lbp (amount entered by the user) to the back-end
             if (get_method == false) {
                 try {
                     String amount_lbp = (String) arg0[0];
@@ -54,7 +56,10 @@ public class MainActivity2 extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
-            } else if (get_method == true){
+            }
+            // Establishing a connection with back-end through the url
+            // Reading content of the url
+            else if (get_method == true){
                 String result = "";
                 URL url;
                 HttpURLConnection http;
@@ -87,13 +92,16 @@ public class MainActivity2 extends AppCompatActivity {
             super.onPostExecute(s);
 
             try{
+
+                // Getting JSON object and converting it to a string
+                // Toasting the converted amount
                 JSONObject json = new JSONObject(s);
 
-                if (usd == "0"){
+                if (usd == "0"){ // Converted from lbp to usd
                     String converted_amount_usd = json.getString("converted_amount_usd");
                     Toast.makeText(getApplicationContext(), converted_amount_usd, Toast.LENGTH_LONG).show();
                 }
-                else if (usd != "0"){
+                else if (usd != "0"){ // Converted from usd to lbp
                     String converted_amount_lbp = json.getString("converted_amount_lbp");
                     Toast.makeText(getApplicationContext(), converted_amount_lbp, Toast.LENGTH_LONG).show();
                 }
@@ -113,33 +121,40 @@ public class MainActivity2 extends AppCompatActivity {
         amount_to_convert = (TextView) findViewById(R.id.textView2);
         amount = (EditText) findViewById(R.id.editTextTextPersonName);
 
-        getSupportActionBar().hide();
+        getSupportActionBar().hide(); // This hides the action bar
     }
 
+    // To go to the MainActivity.java
     public void goToMain (View view) {
 
         Intent obj = new Intent(getApplicationContext(), MainActivity.class);
         startActivity(obj);
     }
 
+    // When the user click on the EditText the TextView fades
     public void fadeAmountToConvert(View view) {
+
         if(amount_to_convert.getText().toString().equals("The amount LBP or USD")){
             amount_to_convert.setText("");
         }
     }
 
+    // To convert usd to lbp
     public void convertToLbp (View view){
 
         usd = amount.getText().toString();
         lbp = "0";
 
+        // To post data
         get_method = false;
 
         DownloadTask task = new DownloadTask();
         task.execute(usd, lbp);
 
+
         String url = "http://192.168.1.7/Currency_Converter/get_result.php";
 
+        // To get data from url
         get_method = true;
 
         DownloadTask task1 = new DownloadTask();
@@ -147,11 +162,13 @@ public class MainActivity2 extends AppCompatActivity {
 
     }
 
+    // To convert lbp to usd
     public void convertToUsd (View view){
 
         lbp = amount.getText().toString();
         usd = "0";
 
+        // To post data
         get_method = false;
 
         DownloadTask task = new DownloadTask();
@@ -160,13 +177,16 @@ public class MainActivity2 extends AppCompatActivity {
 
         String url = "http://192.168.1.7/Currency_Converter/get_result.php";
 
+        // To get data from url
         get_method = true;
 
         DownloadTask task1 = new DownloadTask();
         task1.execute(url);
     }
 
+    // Resetting the page to be as first opened 
     public void reset (View view){
+
         amount_to_convert.setText("The amount LBP or USD");
         amount.setText("");
         get_method = false;
