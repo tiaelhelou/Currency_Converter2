@@ -17,8 +17,8 @@ import java.net.URL;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView text1;
-    TextView text2;
+    TextView buy;
+    TextView sell;
 
     public class DownloadTask extends AsyncTask<String, Void, String> {
 
@@ -54,16 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
             try{
                 JSONObject json = new JSONObject(s);
-                String buy = json.getString("buy_rate");
-                String sell = json.getString("sell_rate");
-                text1.setText("Buy 1 USD at " + buy + " LBP");
-                text2.setText("Sell 1 USD at " + sell + " LBP");
+                String buy_rate = json.getString("buy_rate");
+                String sell_rate = json.getString("sell_rate");
+                buy.setText("Buy 1 USD at " + buy_rate + " LBP");
+                sell.setText("Sell 1 USD at " + sell_rate + " LBP");
 
             }catch(Exception e){
                 e.printStackTrace();
             }
         }
-
     }
 
     @Override
@@ -71,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        text1 = (TextView) findViewById(R.id.textView);
-        text2 = (TextView) findViewById(R.id.textView3);
+        buy = (TextView) findViewById(R.id.textView);
+        sell = (TextView) findViewById(R.id.textView3);
 
         getSupportActionBar().hide();
         String url = "http://192.168.1.7/Currency_Converter/get_updated_rate.php";
@@ -86,5 +85,14 @@ public class MainActivity extends AppCompatActivity {
 
         Intent obj = new Intent(getApplicationContext(), MainActivity2.class);
         startActivity(obj);
+    }
+
+    public void refresh (View view){
+
+        String url = "http://192.168.1.7/Currency_Converter/get_updated_rate.php";
+
+        DownloadTask task = new DownloadTask();
+        task.execute(url);
+
     }
 }
